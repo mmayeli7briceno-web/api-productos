@@ -148,7 +148,7 @@ const actualizarProducto = async(req, res) => {
     const{marca, descripcion, precio, stock} = req.body
     const [resultado] = await pool.execute(consulta, [marca, descripcion, precio, stock, id])
 
-    res.status(204).json({
+    res.status(200).json({
       ok: true,
       filasAfectadas: resultado.affectedRows
     })

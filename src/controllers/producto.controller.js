@@ -163,6 +163,22 @@ const actualizarProducto = async(req, res) => {
 
 const eliminarProducto = async(req, res) => {  
   try{
+    const id = Number(req.params.id)
+    //Agregar validación ID no puede ser negativo
+
+    const [resultado] = await pool.execute('DELETE FROM productos WHERE id = ?', [id])
+
+    if (resultado.affectedRows === 0){
+      return res.status(404).json({
+        ok:false,
+        message: 'El ID no existe'
+      })
+    }
+
+    res.status(200).json({
+      ok: true,
+      message: 'Producto eliminado'
+    })
 
   }catch(e){
     console.error(e)

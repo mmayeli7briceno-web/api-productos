@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <style>
+    * {
+      padding: 0px;
+      margin: 0px;
+      border: 0px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: normal;
+    }
+
+    .contenedor{
+      width: 90%;
+      margin: 0 auto;
+      background-color: antiquewhite;
+      padding: .5rem;
+      text-align: center;
+
+    }
+
+    .tarjeta{
+      padding: 1rem;
+      width: 350px;
+      background-color: aqua;
+      display: inline-block;
+      border-radius: 10px;
+      margin-bottom: .25rem;
+    }
+
+    .tarjeta a{
+      text-decoration: none;
+      font-size: 12px;
+    }
+
+    .tarjeta a:hover{
+      text-decoration: underline;
+    }
+
+    .tarjeta h5{
+      font-style: italic;
+      margin-bottom: .25rem;
+    }
+
+  </style>
+
+  <select name="selector-carreras" id="selector-carreras">
+    <option value="">Mostrar todas</option>
+    <option value="Ingeniería de Software">Ingeniería de Software</option>
+    <option value="Ingeniería Mecanica">Ingeniería Mecanica</option>
+    <option value="Administración Industrial">Administración Industrial</option>
+  </select>
+
+  <div class="contenedor">
+
+    
+  </div>
+
+  <script>
+    /* Imginemos que los datos para las tarjetas vienen de una consulta*/
+    /* Con esta información ¿cómo las renderizamos?*/
+    const alumnos = [
+      {
+        apellidos: "Briceño Anchante",
+        nombres: "Mayeli",
+        carrera: "Ingeniería de Software",
+        telefono: "912345678",
+        correo: "mayelibri@gmail.com"
+      },
+      {
+        apellidos: "Pachas Mendoza",
+        nombres: "Miguel",
+        carrera: "Ingeniería Mecanica",
+        telefono: "965487321",
+        correo: "miguelpach@gmail.com"
+      },
+      {
+        apellidos: "Huaman Torres",
+        nombres: "Fabiano",
+        carrera: "Ingeniería Mecanica",
+        telefono: "987521463",
+        correo: "fabhuman@gmail.com"
+      },
+      {
+        apellidos: "Sotelo Castillo",
+        nombres: "Leonardo",
+        carrera: "Ingeniería de Software",
+        telefono: "965487321",
+        correo: "leosotcas@gmail.com"
+      },
+      {
+        apellidos: "Sarmiento Deza",
+        nombres: "Camilo",
+        carrera: "Administración Industrial",
+        telefono: "935784621",
+        correo: "camilosarm@gmail.com"
+      }
+    ]
+  
+    const contenedor = document.querySelector(".contenedor") // .=clase
+    const selector = document.getElementById('selector-carreras')
+    
+    //Evento (¿Cuándo ejecutamos la instrucción?)
+    selector.addEventListener("change", function(){
+      renderizarTarjetas(selector.value)
+    })
+
+    //Continuamos...
+    //Manejo de DOM Document Object Model
+    //Esta función requiere el nombre de una carrera(opcional), aplicar
+     /*alumnos.forEach(alumno =>{
+        if (alumno.carrera !== 'Ingeniería de Software') return; */
+    //el filtro con el nombre de la carrera, en caso esté vacía,  mostrar todo 
+    function renderizarTarjetas(carrera = ""){
+      let listaFiltrada = []
+      contenedor.innerHTML = ''
+      
+    /*  if (carrera.trim() === ""){
+        listaFiltrada = alumnos
+      }else{
+        listaFiltrada = alumnos.filter(alumno => alumno.carrera == carrera)
+      } */
+
+      listaFiltrada =
+      carrera.trim() === ""
+      ? alumnos
+      : alumnos.filter(alumno => alumno.carrera == carrera)
+
+      //Paso 1- Recorrer todo el arreglo
+        listaFiltrada.forEach(alumno =>{
+        const nuevaTarjeta = `
+        <div class="tarjeta">
+          <h4>${alumno.apellidos} ${alumno.nombres}</h4>
+          <h5>${alumno.carrera}</h5>
+          <a href="tel:${alumno.telefono}">Contactar</a>
+          <a href="mailto:${alumno.correo}">Enviar correo</a>
+        </div>
+        `
+        contenedor.innerHTML += nuevaTarjeta
+      })
+    }
+
+    renderizarTarjetas()
+  </script>
+</body>
+</html>

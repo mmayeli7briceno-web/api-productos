@@ -1,4 +1,4 @@
-//Necesita que app haya gestionado toda la configuración
+//Necesita que app haya gestiona toda la configuración
 const app = require('./app')
 const { port } = require('./config/env')
 const { probarConexion } = require('./config/database')
@@ -8,12 +8,12 @@ const iniciarServidor = async() => {
     await probarConexion()
     console.log('Conexion a MySQL exitosa')
 
-    //Levantamos los servidores
+    //Levantamos los servicios
     app.listen(port, () => {
       console.log(`Servidor iniciado en http://localhost:${port}`)
     })
   }catch(e){
-    console.error(`No podemos cnectarnos a MySQL`, e.message)
+    console.error(`No podemos conectarnos a MySQL`, e.message)
     process.exit(1)
   }
 }

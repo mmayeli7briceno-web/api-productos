@@ -1,4 +1,4 @@
-//app = aplication
+//app = application 
 const express = require('express')  //Framework
 const routes = require('./routes')  //Rutas
 
@@ -6,7 +6,7 @@ const app = express() //Inicializamos la App
 
 app.use(express.json()) //Comunicación es JSON
 
-//Mensaje predeterminada
+//Mensaje predeterminado
 //http://miaplicacion.com/
 app.get('/', (req, res) => {
   res.status(200).json({

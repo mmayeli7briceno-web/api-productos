@@ -2,7 +2,7 @@ const { pool } = require('../config/database')
 const validarCampos = ({razonsocial, contacto, ruc, direccion} = {}) => {
     const errores = []
     if (!razonsocial || razonsocial.trim() === '') errores.push('La razon social es obligatoria')
-    if (!contacto || contacto.trim() === '') errores.push('La contacto es obligatorio')
+    if (!contacto || contacto.trim() === '') errores.push('El contacto es obligatorio') // <-- Corregido "La" por "El"
     if (!ruc || ruc.length !== 11) errores.push('El ruc debe tener 11 numeros')
     if (!direccion || direccion.trim() === '') errores.push('La direccion es obligatoria')
     return errores

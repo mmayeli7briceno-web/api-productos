@@ -39,7 +39,7 @@ const obtenerClientes = async(req, res) => {
         })
       }
  
-      const [registro] = await pool.execute(`SELECT * FROM productos WHERE id = ?`, [id])
+      const [registro] = await pool.execute(`SELECT * FROM clientes WHERE id = ?`, [id])
       
       if (registro.length === 0){
         return res.status(404).json({
